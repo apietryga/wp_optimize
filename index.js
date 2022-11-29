@@ -1,5 +1,5 @@
-console.log('hi6')
 const ap_module = {
+  // footer
   tryingLimit: 10,
   removeFooter() {
     const footers = [
@@ -58,6 +58,20 @@ const ap_module = {
       return false
     }
   },
+  async inPromise( functionName ) {
+    return await new Promise( res => {
+      const interval = setInterval(()=>{
+        const resp = this[functionName]()
+        if(resp || this.tryingLimit < 1){
+          clearInterval(interval)
+          res( resp )
+        }
+        this.tryingLimit--
+      },300)
+    })
+  },
+
+  // cookies
   acceptCookies(){
     document.cookie = "ap_module_popup=true";
     document.querySelector('.customCookiesPopup').style.display = "none"
@@ -118,23 +132,23 @@ const ap_module = {
       if (parts.length === 2) return parts.pop().split(';').shift();
     }
   },
-  async inPromise( functionName ) {
-    return await new Promise( res => {
-      const interval = setInterval(()=>{
-        const resp = this[functionName]()
-        console.log({resp})
-        if(resp || this.tryingLimit < 1){
-          clearInterval(interval)
-          res( resp )
+  plFontSwap(){
+    const style = document.createElement("style")
+    const h1Font = window.getComputedStyle(document.querySelector('h1')).getPropertyValue('font-family').replace(/['"]+/g, '')
+    if( h1Font == "Merriweather" ){
+      style.innerHTML = `
+        h1, h2, h3, h4, h5, h6, input, .twp-secondary-font {
+            font-family: "Times New Roman !important";
         }
-        this.tryingLimit--
-      },300)
-    })
+      `
+    }
+    document.head.append( style )
   },
   runWhenPageIsReady() {
     window.addEventListener('load', async () => {
       await this.inPromise('removeFooter')
       this.makeCookiesPopup()
+      this.plFontSwap()
     })
   }
 }
