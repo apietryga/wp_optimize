@@ -18,4 +18,5 @@ footers.forEach(foot => {
   if(footer != null && footer.innerText == foot.text){
     footer.innerHTML = ""
   }
+  console.log({ foot, footer })
 })
