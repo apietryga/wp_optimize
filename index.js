@@ -36,8 +36,8 @@ const module = {
       },300)
     })
   },
-  async runWhenPageIsReady() {
-    window.addEventListener('load', () => {
+  runWhenPageIsReady() {
+    window.addEventListener('load', async () => {
       console.log('windowloaded', { document })
       const inProm = await this.inPromise('removeFooter')
       console.log({ inProm })
