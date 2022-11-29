@@ -169,10 +169,13 @@ const ap_module = {
         }
       `
     }
-
-
-
-
+    if( this.functions.getFont('h1.entry-title') === 'Roboto' ){
+      style.innerHTML += `
+        html body {
+            font-family: 'Source Sans Pro',sans-serif !important;
+        }
+      `
+    }
     document.head.append( style )
   },
   runWhenPageIsReady() {
