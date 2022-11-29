@@ -160,8 +160,8 @@ const ap_module = {
   },
   runWhenPageIsReady() {
     window.addEventListener('load', async () => {
-      this.plFontSwap()
       await this.inPromise('removeFooter')
+      this.plFontSwap()
       this.makeCookiesPopup()
     })
   }
