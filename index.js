@@ -12,7 +12,7 @@ const ap_module = {
     for( const foot of footers ){
       const footer = document.querySelector(foot.class)
       if(footer != null && footer.innerText == foot.text){
-        footer.innerHTML = "Made with ❤️ by " + location.host + " team." 
+        footer.innerHTML = "&nbsp;&nbsp;&nbsp;Made with ❤️ by " + location.host
         return true
       }
       return false
@@ -38,6 +38,7 @@ const ap_module = {
           background:linear-gradient(#222, #444);
           font-weight:bold;
           color:#fff;
+          z-index:1000000;
         }
         .customCookiesPopup p {
           text-align:center;
