@@ -1,6 +1,6 @@
 const ap_module = {
   // footer
-  tryingLimit: 10,
+  tryingLimit: 20,
   removeFooter() {
     const footers = [
       {
@@ -55,8 +55,8 @@ const ap_module = {
         footer.innerHTML = "&nbsp;&nbsp;&nbsp;Made with ❤️ by " + location.host
         return true
       }
-      return false
     }
+    return false
   },
   async inPromise( functionName ) {
     return await new Promise( res => {
@@ -67,7 +67,7 @@ const ap_module = {
           res( resp )
         }
         this.tryingLimit--
-      },300)
+      },200)
     })
   },
 
@@ -160,9 +160,9 @@ const ap_module = {
   },
   runWhenPageIsReady() {
     window.addEventListener('load', async () => {
-      await this.inPromise('removeFooter')
       this.plFontSwap()
       this.makeCookiesPopup()
+      await this.inPromise('removeFooter')
     })
   }
 }
