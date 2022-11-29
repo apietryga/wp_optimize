@@ -24,11 +24,10 @@ const module = {
     })
   },
   runWhenPageIsReady() {
-    document.addEventListener('load', () => {
-      console.log('documentloaded', { document })
-    })
     window.addEventListener('load', () => {
       console.log('windowloaded', { document })
+      this.removeFooter()
+
     })
     console.log({ document })
 
