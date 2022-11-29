@@ -4,10 +4,50 @@ const ap_module = {
   removeFooter() {
     const footers = [
       {
-        class: ".site-footer.twp-footer.footer-active.show",
+        // newsup
+        class: ".container .twp-row .site-info",
         text: "Copyright All right reserved Theme: Default Mag by ThemeInWP"    
-      }
-
+      },
+      {
+        // default mag
+        class: "footer#colophon .site-info",
+        text: "Copyright All right reserved Theme: Default Mag by ThemeInWP"    
+      },
+      {
+        // chrome news
+        class: ".site-info .col-1.color-pad",
+        text: "Copyright © All rights reserved. | ChromeNews by AF themes."    
+      },
+      {
+        // newsment
+        class: ".site-info .row .col-sm-12",
+        text: "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes."    
+      },
+      {
+        // maxnews
+        class: ".mg-footer-copyright .col-md-6.text-xs p",
+        text: "Proudly powered by WordPress | Theme: Max News by Themeansar."
+      },
+      {
+        // blook
+        class: "footer .blook-container .site-info",
+        text: "Copyright © 2022 krakowzprzewodnikiem.pl. All rights reserved. | Theme: Blook By Themeinwp. | Powered by WordPress"
+      },
+      {
+        // oceanly news dark
+        class: "footer.site-footer .footer-bottom-area-wrap.c-wrap",
+        text: "Copyright © 2022 urumcajsa.pl.\n\nTheme: Oceanly News Dark by ScriptsTown"
+      },
+      {
+        // intimate
+        class: "footer.site-footer .copyright",
+        text: "COPYRIGHT ALL RIGHTS RESERVED 2022 THEME: INTIMATE BY TEMPLATE SELL."
+      },
+      {
+        // newsment pl
+        class: "footer.site-footer .site-info .col-sm-12",
+        text: "Copyright © All rights reserved. | CoverNews by AF themes."
+      },
     ] 
     for( const foot of footers ){
       const footer = document.querySelector(foot.class)
@@ -52,19 +92,21 @@ const ap_module = {
           justify-content:end;
           padding:.5rem 1rem;
         }
-        .customCookiesPopup > div > a{
+        .customCookiesPopup > div > a,
+        .customCookiesPopup > div > .ap_module_button{
           border:3px solid #fff;
           text-decoration:none;
-          padding:.5rem;
+          padding:.25rem .75rem;
           margin:.25rem;
           border-radius:3px;
           color:inherit;
+          cursor:pointer;
         }
       </style>
       <p>W celu zapewnienia wyższej jakości usług <br/>na tej stronie użyto plików cookie.</p>
       <div>
         <a href="https://ec.europa.eu/info/cookies_pl" target="_blank">Więcej</a>
-        <a href="#" onclick="ap_module.acceptCookies()"> Akceptuję </a>
+        <div class="ap_module_button" onclick="ap_module.acceptCookies()"> Akceptuję </div>
       </div>
     `
     document.body.append(cookies)
