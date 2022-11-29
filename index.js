@@ -27,6 +27,9 @@ const module = {
     document.addEventListener('load', () => {
       console.log('documentloaded', { document })
     })
+    window.addEventListener('load', () => {
+      console.log('windowloaded', { document })
+    })
     console.log({ document })
 
   }
