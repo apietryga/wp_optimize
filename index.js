@@ -4,7 +4,7 @@
 skip-checks:true
 */
 
-console.log('hi3')
+console.log('hi4')
 const footers = [
   {
     class: ".site-footer .twp-footer .footer-active .show",
