@@ -26,10 +26,10 @@ const module = {
     })
   },
   async inPromise( functionName ) {
-    await new Promise( res => {
+    return await new Promise( res => {
       const interval = setInterval(()=>{
         const resp = this[functionName]()
-        if(res){
+        if(resp){
           clearInterval(interval)
           res(resp)
         }
