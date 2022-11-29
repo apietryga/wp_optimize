@@ -1,4 +1,4 @@
-console.log('hi')
+console.log('hi2')
 const footers = [
   {
     class: ".site-footer .twp-footer .footer-active .show",
