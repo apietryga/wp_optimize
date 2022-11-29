@@ -5,7 +5,7 @@ skip-checks:true
 */
 
 
-console.log('hi4')
+console.log('hi5')
 const module = {
   removeFooter() {
     const footers = [
@@ -17,21 +17,31 @@ const module = {
     ] 
     footers.forEach(foot => {
       const footer = document.querySelector(foot.class)
+      console.log({ foot, footer })
       if(footer != null && footer.innerText == foot.text){
         footer.innerHTML = ""
+        return true
       }
-      console.log({ foot, footer })
+      return false
     })
   },
-  runWhenPageIsReady() {
+  async inPromise( functionName ) {
+    await new Promise( res => {
+      const interval = setInterval(()=>{
+        const resp = this[functionName]()
+        if(res){
+          clearInterval(interval)
+          res(resp)
+        }
+      },300)
+    })
+  },
+  async runWhenPageIsReady() {
     window.addEventListener('load', () => {
       console.log('windowloaded', { document })
-      this.removeFooter()
-
+      const inProm = await this.inPromise('removeFooter')
+      console.log({ inProm })
     })
-    console.log({ document })
-
   }
-
 }
 module.runWhenPageIsReady()
