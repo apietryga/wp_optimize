@@ -157,7 +157,7 @@ const ap_module = {
     }
     if( this.functions.getFont('figcaption h3 a') === 'Roboto' ){
       style.innerHTML += `
-        html body {
+        html, body, body h1, body h2, body h3, body h4, body h5, body h6, body .main-navigation a, body .font-family-1, body .site-description, body .trending-posts-line, body .widget-title, body .em-widget-subtitle, body .grid-item-metadata .item-metadata, body .af-navcontrols .slide-count, body .figure-categories .cat-links, body .nav-links a {
             font-family: 'Source Sans Pro',sans-serif !important;
         }
       `
@@ -169,9 +169,9 @@ const ap_module = {
         }
       `
     }
-    if( this.functions.getFont('h1.entry-title') === 'Roboto' ){
+    if( this.functions.getFont('h1') === 'Roboto' ){
       style.innerHTML += `
-        html body {
+        html body, body h1, body h2, body h3, body h4, body h5, body h6, body .main-navigation a, body .font-family-1, body .site-description, body .trending-posts-line, body .widget-title, body .em-widget-subtitle, body .grid-item-metadata .item-metadata, body .af-navcontrols .slide-count, body .figure-categories .cat-links, body .nav-links a  {
             font-family: 'Source Sans Pro',sans-serif !important;
         }
       `
