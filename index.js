@@ -5,8 +5,8 @@ const ap_module = {
     const footers = [
       {
         // newsup
-        class: ".container .twp-row .site-info",
-        text: "Copyright All right reserved Theme: Default Mag by ThemeInWP"    
+        class: "footer .mg-footer-copyright .row p",
+        text: "Proudly powered by WordPress | Theme: Newsup by Themeansar."    
       },
       {
         // default mag
@@ -130,18 +130,32 @@ const ap_module = {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop().split(';').shift();
+    },
+    getFont(selector){
+      return window.getComputedStyle(document.querySelector(selector)).getPropertyValue('font-family').replace(/['"]+/g, '')
     }
   },
   plFontSwap(){
     const style = document.createElement("style")
-    const h1Font = window.getComputedStyle(document.querySelector('h1')).getPropertyValue('font-family').replace(/['"]+/g, '')
-    if( h1Font == "Merriweather" ){
-      style.innerHTML = `
+    if( this.functions.getFont('h1') === 'Merriweather' ){
+      style.innerHTML += `
         h1, h2, h3, h4, h5, h6, input, .twp-secondary-font {
             font-family: "Times New Roman !important";
         }
       `
     }
+    if( this.functions.getFont('body') === 'Source Sans Pro' ){
+      style.innerHTML += `
+        html body {
+            color: #000;
+            font-family: "sans-serif" !important;
+        }
+      `
+    }
+
+
+
+
     document.head.append( style )
   },
   runWhenPageIsReady() {
