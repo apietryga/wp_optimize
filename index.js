@@ -125,18 +125,8 @@ const ap_module = {
     `
     document.body.append(cookies)
   },
-  functions : {
-    getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(';').shift();
-    },
-    getFont(selector){
-      const element = document.querySelector(selector)
-      if(!element){ return false }
-      return window.getComputedStyle(element).getPropertyValue('font-family').replace(/['"]+/g, '')
-    }
-  },
+
+  // change fonts to pl
   plFontSwap(){
     const style = document.createElement("style")
     if( this.functions.getFont('h1') === 'Merriweather' ){
@@ -177,6 +167,26 @@ const ap_module = {
       `
     }
     document.head.append( style )
+  },
+
+  // footer prettyview
+  fPrettyView(){
+
+
+
+  },
+  functions : {
+    getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    },
+    getFont(selector){
+      const element = document.querySelector(selector)
+      if(!element){ return false }
+      return window.getComputedStyle(element).getPropertyValue('font-family').replace(/['"]+/g, '')
+    }
+
   },
   runWhenPageIsReady() {
     window.addEventListener('load', async () => {
