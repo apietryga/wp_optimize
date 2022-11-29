@@ -132,7 +132,9 @@ const ap_module = {
       if (parts.length === 2) return parts.pop().split(';').shift();
     },
     getFont(selector){
-      return window.getComputedStyle(document.querySelector(selector)).getPropertyValue('font-family').replace(/['"]+/g, '')
+      const element = document.querySelector(selector)
+      if(!element){ return false }
+      return window.getComputedStyle(element).getPropertyValue('font-family').replace(/['"]+/g, '')
     }
   },
   plFontSwap(){
@@ -140,7 +142,8 @@ const ap_module = {
     if( this.functions.getFont('h1') === 'Merriweather' ){
       style.innerHTML += `
         h1, h2, h3, h4, h5, h6, input, .twp-secondary-font {
-            font-family: "Times New Roman !important";
+            font-family: "sans-serif" !important;
+            font-size:1.2em;
         }
       `
     }
@@ -149,6 +152,20 @@ const ap_module = {
         html body {
             color: #000;
             font-family: "sans-serif" !important;
+        }
+      `
+    }
+    if( this.functions.getFont('figcaption h3 a') === 'Roboto' ){
+      style.innerHTML += `
+        html body {
+            font-family: 'Source Sans Pro',sans-serif !important;
+        }
+      `
+    }
+    if( this.functions.getFont('.entry-header h3 a') === 'Libre Franklin' ){
+      style.innerHTML += `
+        h1, h2, h3, h4, h5, h6, .widget_recent_entries a, .blook-single-next-post p {
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; !important;
         }
       `
     }
