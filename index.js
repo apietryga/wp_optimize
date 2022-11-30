@@ -6,7 +6,8 @@ const ap_module = {
       {
         // newsup
         class: "footer .mg-footer-copyright .row p",
-        text: "Proudly powered by WordPress | Theme: Newsup by Themeansar."    
+        text: "Proudly powered by WordPress | Theme: Newsup by Themeansar.",
+        secondColumn: ".mg-footer-widget-area .wp-block-categories"
       },
       {
         // default mag
@@ -51,10 +52,46 @@ const ap_module = {
     ] 
     for( const foot of footers ){
       const footer = document.querySelector(foot.class)
-      if(footer != null && footer.innerText == foot.text){
-        footer.innerHTML = "&nbsp;&nbsp;&nbsp;Made with ❤️ by " + location.host
-        return true
+      if( footer?.innerText != foot.text){ continue }
+      footer.innerHTML = "&nbsp;&nbsp;&nbsp;Made with ❤️ by " + location.host
+
+      const secondColumn = document.querySelector( foot?.secondColumn )
+      if( !secondColumn) { return true }
+
+      const secColParent = secondColumn.parentElement.parentElement
+
+      console.log({ secColParent })
+      secColParent.style.cssText = `
+        display: flex !important;
+        align-items:center;
+        justify-content:space-around;
+      `
+      console.log(secondColumn.children)
+      for( const index of [0, 3]){
+        const ul = document.createElement("ul")
+        for( const childIndex of [0, 1, 2]){
+          // const child = secondColumn.children?.[childIndex + index]
+          const child = secondColumn.children?.[0]
+          if(child){
+            ul.append(child)
+          }
+        }
+        // newColumn.append(ul)
+        secColParent.append(ul)
       }
+      // secondColumn.innerHTML = ""
+      // secondColumn.append( newColumn )
+      secondColumn.remove()
+
+      // newColumn.innerHTML = `<ul>`
+      // for( const child of secondColumn.children )
+
+      // newColumn.innerHTML += `</ul>`
+
+      // console.log(foot)
+      // console.log({ secondColumn })
+
+      return true
     }
     return false
   },
@@ -169,12 +206,6 @@ const ap_module = {
     document.head.append( style )
   },
 
-  // footer prettyview
-  fPrettyView(){
-
-
-
-  },
   functions : {
     getCookie(name) {
       const value = `; ${document.cookie}`;
@@ -196,4 +227,7 @@ const ap_module = {
     })
   }
 }
+
+console.log({ "ap_module" : "v_2" })
+
 ap_module.runWhenPageIsReady()
