@@ -7,18 +7,19 @@ const ap_module = {
         // newsup
         class: "footer .mg-footer-copyright .row p",
         text: "Proudly powered by WordPress | Theme: Newsup by Themeansar.",
-        secondColumn: ".mg-footer-widget-area .wp-block-categories"
+        secondColumn: ".mg-footer-widget-area .wp-block-categories",
       },
       {
         // default mag
         class: "footer#colophon .site-info",
         text: "Copyright All right reserved Theme: Default Mag by ThemeInWP",
-        secondColumn: ".twp-footer-widget .wp-block-categories"
+        secondColumn: ".twp-footer-widget .wp-block-categories",
       },
       {
         // chrome news
         class: ".site-info .col-1.color-pad",
-        text: "Copyright © All rights reserved. | ChromeNews by AF themes."    
+        text: "Copyright © All rights reserved. | ChromeNews by AF themes.",
+        secondColumn : ".site-footer .widget_categories",   
       },
       {
         // newsment
