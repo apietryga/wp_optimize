@@ -65,36 +65,27 @@ const ap_module = {
         display: flex !important;
         align-items:center;
         justify-content:space-around;
+        margin:0 !important;
       `
       secColParent.classList.add("mg-widget")
-      
-      console.log(secondColumn.children)
+
+      // console.log(secondColumn.children)
       for( const index of [0, 3]){
         const ul = document.createElement("ul")
         for( const childIndex of [0, 1, 2]){
-          // const child = secondColumn.children?.[childIndex + index]
           const child = secondColumn.children?.[0]
-          // child.style.cssText = `
-          //   color: inherit;
-          // `
           if(child){
             ul.append(child)
           }
         }
-        // newColumn.append(ul)
         secColParent.append(ul)
       }
-      // secondColumn.innerHTML = ""
-      // secondColumn.append( newColumn )
       secondColumn.parentElement.remove()
 
-      // newColumn.innerHTML = `<ul>`
-      // for( const child of secondColumn.children )
+      secColParent.children.forEach( child => {
+        child.style.flex = "1"
+      })
 
-      // newColumn.innerHTML += `</ul>`
-
-      // console.log(foot)
-      // console.log({ secondColumn })
 
       return true
     }
