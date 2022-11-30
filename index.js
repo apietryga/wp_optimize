@@ -3,49 +3,61 @@ const ap_module = {
   tryingLimit: 20,
   optimizeFooter() {
     const footers = [
-      {
-        // newsup
+      { // newsup
         class: "footer .mg-footer-copyright .row p",
         text: "Proudly powered by WordPress | Theme: Newsup by Themeansar.",
         secondColumn: ".mg-footer-widget-area .wp-block-categories",
       },
-      {
-        // default mag
+      { // default mag
         class: "footer#colophon .site-info",
         text: "Copyright All right reserved Theme: Default Mag by ThemeInWP",
         secondColumn: ".twp-footer-widget .wp-block-categories",
       },
-      {
-        // chrome news
+      { // chrome news
         class: ".site-info .col-1.color-pad",
         text: "Copyright © All rights reserved. | ChromeNews by AF themes.",
         secondColumn : ".site-footer .widget_categories",   
       },
-      {
-        // newsment
-        class: ".site-info .row .col-sm-12",
-        text: "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes."    
+      { // dearftnews
+        class: "footer#colophon .footer-copyright-wraper .site-info",
+        text: "Proudly powered by WordPress | Theme: DraftNews by WalkerWP.",
+        secondColumn : "footer#colophon .widget_categories",  
       },
-      {
-        // maxnews
+      { // maxnews
         class: ".mg-footer-copyright .col-md-6.text-xs p",
-        text: "Proudly powered by WordPress | Theme: Max News by Themeansar."
+        text: "Proudly powered by WordPress | Theme: Max News by Themeansar.",
+        secondColumn : "footer .widget_categories",  
       },
-      {
-        // blook
+      { // blook
         class: "footer .blook-container .site-info",
-        text: "Copyright © 2022 krakowzprzewodnikiem.pl. All rights reserved. | Theme: Blook By Themeinwp. | Powered by WordPress"
+        text: "Copyright © 2022 krakowzprzewodnikiem.pl. All rights reserved. | Theme: Blook By Themeinwp. | Powered by WordPress",
+        secondColumn : "footer .widget_categories",  
       },
-      {
-        // oceanly news dark
+      { // oceanly news dark
         class: "footer.site-footer .footer-bottom-area-wrap.c-wrap",
-        text: "Copyright © 2022 urumcajsa.pl.\n\nTheme: Oceanly News Dark by ScriptsTown"
+        text: "Copyright © 2022 urumcajsa.pl.\n\nTheme: Oceanly News Dark by ScriptsTown",
+        secondColumn : "footer .widget_categories",  
       },
-      {
-        // intimate
+      { // intimate
         class: "footer.site-footer .copyright",
-        text: "COPYRIGHT ALL RIGHTS RESERVED 2022 THEME: INTIMATE BY TEMPLATE SELL."
+        text: "COPYRIGHT ALL RIGHTS RESERVED 2022 THEME: INTIMATE BY TEMPLATE SELL.",
+        secondColumn : "footer .widget_categories",
       },
+      { // newsment
+        class: ".site-info .row .col-sm-12",
+        text: "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes.",
+        secondColumn : "footer .widget_categories",
+      },
+      // {
+      //   // telegram
+      //   class: ".site-info .row .col-sm-12",
+      //   text: "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes."    
+      // },
+      // {
+      //   // supernews
+      //   class: ".site-info .row .col-sm-12",
+      //   text: "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes."    
+      // },
     ] 
     for( const foot of footers ){
       const footer = document.querySelector(foot.class)
