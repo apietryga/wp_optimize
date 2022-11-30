@@ -12,7 +12,8 @@ const ap_module = {
       {
         // default mag
         class: "footer#colophon .site-info",
-        text: "Copyright All right reserved Theme: Default Mag by ThemeInWP"    
+        text: "Copyright All right reserved Theme: Default Mag by ThemeInWP",
+        secondColumn: ".twp-footer-widget .wp-block-categories"
       },
       {
         // chrome news
@@ -44,11 +45,6 @@ const ap_module = {
         class: "footer.site-footer .copyright",
         text: "COPYRIGHT ALL RIGHTS RESERVED 2022 THEME: INTIMATE BY TEMPLATE SELL."
       },
-      {
-        // newsment pl
-        class: "footer.site-footer .site-info .col-sm-12",
-        text: "Copyright © All rights reserved. | CoverNews by AF themes."
-      },
     ] 
     for( const foot of footers ){
       const footer = document.querySelector(foot.class)
@@ -72,6 +68,7 @@ const ap_module = {
       // console.log(secondColumn.children)
       for( const index of [0, 3]){
         const ul = document.createElement("ul")
+        ul.style.flex = "1"
         for( const childIndex of [0, 1, 2]){
           const child = secondColumn.children?.[0]
           if(child){
@@ -80,12 +77,9 @@ const ap_module = {
         }
         secColParent.append(ul)
       }
+
       secondColumn.parentElement.remove()
-
-      secColParent.children.forEach( child => {
-        child.style.flex = "1"
-      })
-
+      secColParent.children[0].style.flex = "1"
 
       return true
     }
@@ -93,14 +87,17 @@ const ap_module = {
   },
   async inPromise( functionName ) {
     return await new Promise( res => {
+
+      const resp = this[functionName]()
+      if(resp || this.tryingLimit < 1){ clearInterval(interval); res( resp ) }
+
       const interval = setInterval(()=>{
+
         const resp = this[functionName]()
-        if(resp || this.tryingLimit < 1){
-          clearInterval(interval)
-          res( resp )
-        }
+        if(resp || this.tryingLimit < 1){ clearInterval(interval); res( resp ) }
         this.tryingLimit--
-      },200)
+
+      },250)
     })
   },
 
