@@ -1,7 +1,7 @@
 const ap_module = {
   // footer
   tryingLimit: 20,
-  removeFooter() {
+  optimizeFooter() {
     const footers = [
       {
         // newsup
@@ -64,11 +64,14 @@ const ap_module = {
         margin:0 !important;
       `
       secColParent.classList.add("mg-widget")
+      secColParent.classList.add("widget")
 
-      // console.log(secondColumn.children)
       for( const index of [0, 3]){
         const ul = document.createElement("ul")
-        ul.style.flex = "1"
+        ul.cssText = `
+          list-style:none !important;
+          flex:1 !important;
+        `
         for( const childIndex of [0, 1, 2]){
           const child = secondColumn.children?.[0]
           if(child){
@@ -216,7 +219,7 @@ const ap_module = {
     window.addEventListener('load', async () => {
       this.plFontSwap()
       this.makeCookiesPopup()
-      await this.inPromise('removeFooter')
+      await this.inPromise('optimizeFooter')
     })
   }
 }
