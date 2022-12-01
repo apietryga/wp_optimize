@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <!-- <script src="./index.js" defer></script> -->
+  <script src="./index.js"></script>
   <style>
     *{
       box-sizing: border-box;
@@ -15,49 +15,67 @@
       margin:0;
       display:flex;
       flex-direction: column;
-      padding:8px;
     }
     hr{
       width: 100%;
+      margin-bottom: 0;
     }
     #iframe{
-      border:2px dashed blue;
       flex:1;
     }
-
+    ul{
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      padding:0;
+      margin:0 0 0 2rem;
+    }
+    li{
+      margin: 5px;
+    }
+    header{
+      display:flex;
+      justify-content: space-between;
+      padding:8px;
+    }
   </style>
 </head>
 <body>
-  <a href="./"><h1 style="margin:0;">Hello</h1></a>
-  <a href="./index.js">here's the js</a>
+  <header>
+    <div class="headContent">
+      <a href="./"><h1 style="margin:0;">Hello</h1></a>
+      <a href="./index.js">here's&nbsp;the&nbsp;js</a>
+    </div>
+    <nav>
+      <ul id="ul">
+      </ul>
+    </nav>
+  </header>
   <hr>
-
-  <ul id="ul">
-  </ul>
-
   <iframe id="iframe" frameborder="0"></iframe>
-
   <script>
+    const defaultTemplate = localStorage.template ? localStorage.template : 'newsup';
     const iframe = document.querySelector("#iframe")
-
     const changePage = theme => {
-      iframe.src = "./tests/" + theme + ".html"
-      console.log(theme)
+      localStorage.template = theme
+      iframe.src = "./test/" + theme + ".html"
+      setTimeout(() => {
+       iframe.contentWindow.scrollTo(0, iframe.contentDocument.body.scrollHeight);
+      },1000)
     }
 
-    fetch ('./tests/list.json')
-    .then(dt => dt.json())
-    .then(dt => {
-      iframe.src = "./tests/" + dt[0] + ".html"
-      for( const theme of dt ){
-        const li = document.createElement('li')
-        li.innerHTML = /*html*/`
-          <span onclick="changePage('${theme}')" style="cursor:pointer;">
-            ${ theme.replace(/^\w/, c => c.toUpperCase()) }
-          </span>`;
-        document.querySelector("#ul").append(li)
-      }
-    })
+    const dt = ap_module.footers.map(item => item.name)
+    changePage( defaultTemplate )
+    for( const theme of dt ){
+      const li = document.createElement('li')
+      li.innerHTML = /*html*/`
+        <span onclick="changePage('${theme}')" style="cursor:pointer;">
+          ${ theme.replace(/^\w/, c => c.toUpperCase()) }
+        </span>`;
+      document.querySelector("#ul").append(li)
+    }
+
+
 
   </script>
 
