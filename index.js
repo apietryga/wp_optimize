@@ -67,17 +67,14 @@ const ap_module = {
         }
       }
       if( !footer || footer?.innerText != foot.text){ continue }
-      
-      
       footer.innerHTML = "&nbsp;&nbsp;&nbsp;Made with ❤️ by " + location.host
 
-      // COLUMN PRETTIER
+      //* COLUMN PRETTIER
+
       const secondColumn = document.querySelector( foot?.secondColumn )
       if( !secondColumn) { return true }
       
-      // const secColParent = secondColumn.parentElement.parentElement
       const secColParent = secondColumn.parentElement.parentElement
-
 
       // default-mag
       secColParent.classList.remove('col-xl-4')
@@ -93,7 +90,6 @@ const ap_module = {
       // telegram
       secColParent.classList.remove('twp-col-lg-3')
 
-      // console.log({ secColParent })
       secColParent.style.cssText = `
         display: flex !important;
         align-items:start;
@@ -106,11 +102,6 @@ const ap_module = {
 
       for( const index of [0, 3]){
         const ul = document.createElement("ul")
-        // console.log('setting ul')
-        // ul.cssText = `
-        //   list-style:none !important;
-        //   flex:1 !important;
-        // `
         ul.style.listStyle = 'none';
         ul.style.flex = 1;
         for( const childIndex of [0, 1, 2]){
@@ -122,16 +113,8 @@ const ap_module = {
         secColParent.append(ul)
       }
 
-      // if(['newsup'].includes(foot.name)){
-        secondColumn.parentElement.remove()
-
-      // }
-      // if(['chromenews'].includes(foot.name)){
-      //   secondColumn.remove()
-      // }
-      // secondColumn.style.border = "5px dashed blue"
+      secondColumn.parentElement.remove()
       secColParent.children[0].style.flex = "1"
-
 
       // blook
       secColParent.children[0].classList.remove("widget")
@@ -141,8 +124,8 @@ const ap_module = {
       secColParent.children[0].querySelectorAll('a').forEach( a => {
         a.style.color = "inherit"
       })
-      secColParent.style.padding = "2rem"
 
+      secColParent.style.padding = "2rem"
       return true
     }
     return false
@@ -282,7 +265,4 @@ const ap_module = {
     })
   }
 }
-
-// console.log({ "ap_module" : "v_3" })
-
 ap_module.runWhenPageIsReady()
