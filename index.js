@@ -69,7 +69,10 @@ const ap_module = {
 
       const secColParent = secondColumn.parentElement.parentElement
 
-      console.log({ secColParent })
+      secColParent.classList.remove('col-xl-4')
+      secColParent.classList.remove('col-sm-6')
+
+      // console.log({ secColParent })
       secColParent.style.cssText = `
         display: flex !important;
         align-items:center;
@@ -81,10 +84,13 @@ const ap_module = {
 
       for( const index of [0, 3]){
         const ul = document.createElement("ul")
-        ul.cssText = `
-          list-style:none !important;
-          flex:1 !important;
-        `
+        // console.log('setting ul')
+        // ul.cssText = `
+        //   list-style:none !important;
+        //   flex:1 !important;
+        // `
+        ul.style.listStyle = 'none';
+        ul.style.flex = 1;
         for( const childIndex of [0, 1, 2]){
           const child = secondColumn.children?.[0]
           if(child){
@@ -105,7 +111,7 @@ const ap_module = {
     return await new Promise( res => {
 
       const resp = this[functionName]()
-      if(resp || this.tryingLimit < 1){ clearInterval(interval); res( resp ) }
+      if(resp || this.tryingLimit < 1){ res( resp ) }
 
       const interval = setInterval(()=>{
 
@@ -237,6 +243,6 @@ const ap_module = {
   }
 }
 
-console.log({ "ap_module" : "v_2" })
+console.log({ "ap_module" : "v_3" })
 
 ap_module.runWhenPageIsReady()
