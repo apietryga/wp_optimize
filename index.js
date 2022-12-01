@@ -1,83 +1,105 @@
 const ap_module = {
   // footer
+  footers : [
+    { name: "newsup",
+      class: "footer .mg-footer-copyright .row p",
+      text: "Proudly powered by WordPress | Theme: Newsup by Themeansar.",
+      secondColumn: ".mg-footer-widget-area .wp-block-categories",
+    },
+    { name: "default-mag",
+      class: "footer#colophon .site-info",
+      text: "Copyright All right reserved Theme: Default Mag by ThemeInWP",
+      secondColumn: ".twp-footer-widget .wp-block-categories",
+    },
+    { name: "chromenews",
+      class: ".site-info .col-1.color-pad",
+      text: "Copyright © All rights reserved. | ChromeNews by AF themes.",
+      secondColumn : "footer.site-footer .widget_categories .wp-block-categories-list",   
+    },
+    { name: "draftnews",
+      class: "footer#colophon .footer-copyright-wraper .site-info",
+      text: "Proudly powered by WordPress | Theme: DraftNews by WalkerWP.",
+      secondColumn : "footer#colophon .widget_categories .wp-block-categories",  
+    },
+    { name: "max-news",
+      class: ".mg-footer-copyright .col-md-6.text-xs p",
+      text: "Proudly powered by WordPress | Theme: Max News by Themeansar.",
+      secondColumn : "footer .widget_categories .wp-block-categories-list",  
+    },
+    { name: "blook",
+      class: "footer .blook-container .site-info",
+      text: "Copyright © 2022 krakowzprzewodnikiem.pl. All rights reserved. | Theme: Blook By Themeinwp. | Powered by WordPress",
+      secondColumn : ".blook-footer-widget .widget_categories .wp-block-categories",  
+    },
+    { name: "oceanly-news-dark",
+      class: "footer.site-footer .footer-bottom-area-wrap.c-wrap",
+      text: "Copyright © 2022 urumcajsa.pl.\n\nTheme: Oceanly News Dark by ScriptsTown",
+      secondColumn : "footer#colophon .widget_categories .wp-block-categories",  
+    },
+    { name: "intimate",
+      class: "footer.site-footer .copyright",
+      text: "COPYRIGHT ALL RIGHTS RESERVED 2022 THEME: INTIMATE BY TEMPLATE SELL.",
+      secondColumn : ".footer-wrap .widget_categories .wp-block-categories",
+    },
+    { name: "newsment",
+      class: ".site-info .row .col-sm-12",
+      text: [
+        "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes.",
+        "Copyright © All rights reserved. | CoverNews by AF themes."
+      ],
+      secondColumn : "footer.site-footer .widget_categories .wp-block-categories",
+    },
+    { name: "telegram",
+      class: "footer#colophon .twp-copyright-section .site-info",
+      text: "Copyright All right reserved\n|\nTheme:\nTelegram\nby\nThemeinwp",
+      secondColumn : "footer#colophon .widget_categories .wp-block-categories",   
+    }
+  ] ,
   tryingLimit: 20,
   optimizeFooter() {
-    const footers = [
-      { // newsup
-        class: "footer .mg-footer-copyright .row p",
-        text: "Proudly powered by WordPress | Theme: Newsup by Themeansar.",
-        secondColumn: ".mg-footer-widget-area .wp-block-categories",
-      },
-      { // default mag
-        class: "footer#colophon .site-info",
-        text: "Copyright All right reserved Theme: Default Mag by ThemeInWP",
-        secondColumn: ".twp-footer-widget .wp-block-categories",
-      },
-      { // chrome news
-        // class: ".site-info .col-1.color-pad",
-        // text: "Copyright © All rights reserved. | ChromeNews by AF themes.",
-        // secondColumn : ".site-footer .widget_categories",   
-      },
-      { // dearftnews
-        class: "footer#colophon .footer-copyright-wraper .site-info",
-        text: "Proudly powered by WordPress | Theme: DraftNews by WalkerWP.",
-        // secondColumn : "footer#colophon .widget_categories",  
-      },
-      { // maxnews
-        class: ".mg-footer-copyright .col-md-6.text-xs p",
-        text: "Proudly powered by WordPress | Theme: Max News by Themeansar.",
-        secondColumn : "footer .widget_categories",  
-      },
-      { // blook
-        class: "footer .blook-container .site-info",
-        text: "Copyright © 2022 krakowzprzewodnikiem.pl. All rights reserved. | Theme: Blook By Themeinwp. | Powered by WordPress",
-        secondColumn : "footer .widget_categories",  
-      },
-      { // oceanly news dark
-        class: "footer.site-footer .footer-bottom-area-wrap.c-wrap",
-        text: "Copyright © 2022 urumcajsa.pl.\n\nTheme: Oceanly News Dark by ScriptsTown",
-        secondColumn : "footer .widget_categories",  
-      },
-      { // intimate
-        class: "footer.site-footer .copyright",
-        text: "COPYRIGHT ALL RIGHTS RESERVED 2022 THEME: INTIMATE BY TEMPLATE SELL.",
-        secondColumn : "footer .widget_categories",
-      },
-      { // newsment
-        class: ".site-info .row .col-sm-12",
-        text: "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes.",
-        secondColumn : "footer .widget_categories",
-      },
-      // {
-      //   // telegram
-      //   class: ".site-info .row .col-sm-12",
-      //   text: "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes."    
-      // },
-      // {
-      //   // supernews
-      //   class: ".site-info .row .col-sm-12",
-      //   text: "Copyright © Wszystkie prawa zastrzeżone. | CoverNews by AF themes."    
-      // },
-    ] 
-    for( const foot of footers ){
+    for( const foot of this.footers ){
       const footer = document.querySelector(foot.class)
-      if( footer?.innerText != foot.text){ continue }
+      if( foot.text.constructor == Array){
+        for( const text of foot.text ){
+          if( footer?.innerText == text ){
+            foot.text = text
+          }
+        }
+      }
+      if( !footer || footer?.innerText != foot.text){ continue }
+      
+      
       footer.innerHTML = "&nbsp;&nbsp;&nbsp;Made with ❤️ by " + location.host
 
+      // COLUMN PRETTIER
       const secondColumn = document.querySelector( foot?.secondColumn )
       if( !secondColumn) { return true }
-
+      
+      // const secColParent = secondColumn.parentElement.parentElement
       const secColParent = secondColumn.parentElement.parentElement
 
+
+      // default-mag
       secColParent.classList.remove('col-xl-4')
       secColParent.classList.remove('col-sm-6')
+      
+      //blook 
+      secColParent.classList.remove('blook-col-xs-6')
+      secColParent.classList.remove('blook-col-md-4')
+
+      // initimate
+      secColParent.parentElement.style.width = "100%"
+
+      // telegram
+      secColParent.classList.remove('twp-col-lg-3')
 
       // console.log({ secColParent })
       secColParent.style.cssText = `
         display: flex !important;
-        align-items:center;
+        align-items:start;
         justify-content:space-around;
         margin:0 !important;
+        width:100%;
       `
       secColParent.classList.add("mg-widget")
       secColParent.classList.add("widget")
@@ -100,8 +122,26 @@ const ap_module = {
         secColParent.append(ul)
       }
 
-      secondColumn.parentElement.remove()
+      // if(['newsup'].includes(foot.name)){
+        secondColumn.parentElement.remove()
+
+      // }
+      // if(['chromenews'].includes(foot.name)){
+      //   secondColumn.remove()
+      // }
+      // secondColumn.style.border = "5px dashed blue"
       secColParent.children[0].style.flex = "1"
+
+
+      // blook
+      secColParent.children[0].classList.remove("widget")
+      
+      // chromenews
+      secColParent.children[0].classList.remove("chromenews-widget")
+      secColParent.children[0].querySelectorAll('a').forEach( a => {
+        a.style.color = "inherit"
+      })
+      secColParent.style.padding = "2rem"
 
       return true
     }
@@ -243,6 +283,6 @@ const ap_module = {
   }
 }
 
-console.log({ "ap_module" : "v_3" })
+// console.log({ "ap_module" : "v_3" })
 
 ap_module.runWhenPageIsReady()
