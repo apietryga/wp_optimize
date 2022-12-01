@@ -14,14 +14,14 @@ const ap_module = {
         secondColumn: ".twp-footer-widget .wp-block-categories",
       },
       { // chrome news
-        class: ".site-info .col-1.color-pad",
-        text: "Copyright © All rights reserved. | ChromeNews by AF themes.",
-        secondColumn : ".site-footer .widget_categories",   
+        // class: ".site-info .col-1.color-pad",
+        // text: "Copyright © All rights reserved. | ChromeNews by AF themes.",
+        // secondColumn : ".site-footer .widget_categories",   
       },
       { // dearftnews
         class: "footer#colophon .footer-copyright-wraper .site-info",
         text: "Proudly powered by WordPress | Theme: DraftNews by WalkerWP.",
-        secondColumn : "footer#colophon .widget_categories",  
+        // secondColumn : "footer#colophon .widget_categories",  
       },
       { // maxnews
         class: ".mg-footer-copyright .col-md-6.text-xs p",
